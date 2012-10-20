@@ -5,6 +5,9 @@ title: Run your nanoc site on Github Pages
 Github Pages FTW
 ======
 
+by Ben Vandgrift<br/>
+[@bvandgrift](http://twitter.com/bvandgrift) | [http://ben.vandgrift.com](http://ben.vandgrift.com)
+
 [Nanoc](http://nanoc.stoneship.org/) is a fantastic tool
 for generating sites, and [github:pages](http://pages.github.com/)
 is a fantastic low-maintenance way to host your static html site.
@@ -79,9 +82,24 @@ to make life a little easier:
       echo "DONE."
     fi
 
-Of course, it's also to have a [bootstrap script] for when you pull your repo
-down to another file system, but I'll leave that as an exercies for the reader.
+Of course, it's also to have a [bootstrap
+script](https://github.com/bvandgrift/nanoc-pages-demo/blob/master/bootstrap.sh)
+for when you pull your repo down to another file system for the first time: 
 
+    #!/usr/bin/env bash
 
+    if [ ! -d "./output" ]; then
+      echo "Bootstrapping gh-pages into ./output"
+      mkdir ./output
+      git clone git@github.com:bvandgrift/nanoc-pages-demo.git output
+      cd output && git checkout gh-pages
 
+      echo "Setup complete! use deploy.sh to deploy the site.."
+    else
+      echo "Seems there is already an ./output dir."
+      echo "Clean up and try again."
+      exit 1
+    fi
+
+That's it! Enjoy.
 
