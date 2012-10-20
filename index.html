@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>nanoc on pages!- Run your nanoc site on Github Pages</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
+    <meta name="generator" content="nanoc 3.4.1"> 
+  </head>
+  <body>
+    <div id="main">
+      <h1 id="github-pages-ftw">Github Pages FTW</h1>
+
+<p><a href="http://nanoc.stoneship.org/">Nanoc</a> is a fantastic cool
+for generating sites, and <a href="http://pages.github.com/">github:pages</a>
+is a fantastic low-maintenance way to host your static html site.</p>
+
+<p>Can we get them together?  I think we can.</p>
+
+<p>First, set up a site as usually:</p>
+
+<pre><code>gem install nanoc 
+nanoc create_site my-site
+cd my-site
+</code></pre>
+
+<p>Make a <code>.rvmrc</code> and <code>Gemfile</code> if that floats your boat. I generally
+add <code>nanoc</code>, <code>kramdown</code>, and <code>adsf</code> to the <code>Gemfile</code> to get started.</p>
+
+<p>Create a <a href="https://github.com/repositories/new">new github repo</a> if necessary 
+to house your <code>nanoc</code> site (let’s call it <code>your-repo</code>?), follow 
+the steps, but before committing, your
+<code>.gitignore</code> should include the <code>output</code> directory. Push to github (<code>origin</code>),
+and let’s make some biscuits.</p>
+
+<pre><code>rm -rf output
+echo 'output' &gt;&gt; .gitignore
+git add . # NOT your output/ directory!
+git commit -m "boom"
+git remote add origin git@github.com:you/your-repo.git
+git push -u origin master
+</code></pre>
+
+<p>Having removed your output directory, clone your repo into it. Yes, this is
+a little dirty. Once that’s done, create an orphan branch called <code>gh-pages</code>.</p>
+
+<pre><code>git clone git@github.com:you/your-repo.git output &amp;&amp; cd output
+git checkout --orphan gh-pages
+git rm -rf .
+</code></pre>
+
+    </div>
+  </body>
+</html>
