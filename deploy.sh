@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo $1
-
 if [[ -z $1 ]]; then
   echo "usage: deploy \"commit message\""
 else

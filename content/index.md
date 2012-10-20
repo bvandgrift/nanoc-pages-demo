@@ -60,9 +60,30 @@ After a few minutes, you should be able to hit
 Neat, huh?
 
 Because it's something of a pain to deploy this way every time, you can
-put in place a [deploy script] to make life a little easier:
+put in place a [deploy
+script](https://github.com/bvandgrift/nanoc-pages-demo/blob/master/deploy.sh) 
+to make life a little easier:
 
-<script src="https://gist.github.com/3923842.js"> </script>    
+    #!/usr/bin/env bash
+
+    echo $1
+
+    if [[ -z $1 ]]; then
+      echo "usage: deploy \"commit message\""
+    else
+      echo "Deploying with commit message: $1"
+
+      cd output
+      git add .
+      git commit -am "$1"
+      git push
+
+      echo "DONE."
+    fi
+
+Of course, it's also to have a [bootstrap script] for when you pull your repo
+down to another file system, but I'll leave that as an exercies for the reader.
+
 
 
 
