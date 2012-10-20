@@ -9,13 +9,23 @@ body {
   background: #fff;
 }
 
+pre {
+  font-family: Courier New, monospace;
+  font-size: 0.8em;
+  margin-left: 20px;
+  padding: 10px;
+  background-color: #eee;
+  color: #000;
+  width: 80%;
+}
+
 a {
   text-decoration: none;
 }
 
 a:link,
 a:visited {
-  color: #f30;
+  color: #214851;
 }
 
 a:hover {
@@ -29,6 +39,8 @@ a:hover {
   left: 280px;
 
   width: 500px;
+
+  color: #333;
 }
 
 #main h1 {

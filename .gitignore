@@ -1,3 +1,5 @@
 *~
 output
 tmp
+*.sw[op]
+**/*.sw[op]
