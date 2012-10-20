@@ -5,7 +5,7 @@ title: Run your nanoc site on Github Pages
 Github Pages FTW
 ======
 
-[Nanoc](http://nanoc.stoneship.org/) is a fantastic cool
+[Nanoc](http://nanoc.stoneship.org/) is a fantastic tool
 for generating sites, and [github:pages](http://pages.github.com/)
 is a fantastic low-maintenance way to host your static html site.
 
@@ -65,8 +65,6 @@ script](https://github.com/bvandgrift/nanoc-pages-demo/blob/master/deploy.sh)
 to make life a little easier:
 
     #!/usr/bin/env bash
-
-    echo $1
 
     if [[ -z $1 ]]; then
       echo "usage: deploy \"commit message\""
