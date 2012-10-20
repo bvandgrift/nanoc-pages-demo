@@ -10,6 +10,9 @@
     <div id="main">
       <h1 id="github-pages-ftw">Github Pages FTW</h1>
 
+<p>by Ben Vandgrift<br />
+<a href="http://twitter.com/bvandgrift">@bvandgrift</a> | <a href="http://ben.vandgrift.com">http://ben.vandgrift.com</a></p>
+
 <p><a href="http://nanoc.stoneship.org/">Nanoc</a> is a fantastic tool
 for generating sites, and <a href="http://pages.github.com/">github:pages</a>
 is a fantastic low-maintenance way to host your static html site.</p>
@@ -90,8 +93,27 @@ else
 fi
 </code></pre>
 
-<p>Of course, it’s also to have a [bootstrap script] for when you pull your repo
-down to another file system, but I’ll leave that as an exercies for the reader.</p>
+<p>Of course, it’s also to have a <a href="https://github.com/bvandgrift/nanoc-pages-demo/blob/master/bootstrap.sh">bootstrap
+script</a>
+for when you pull your repo down to another file system for the first time: </p>
+
+<pre><code>#!/usr/bin/env bash
+
+if [ ! -d "./output" ]; then
+  echo "Bootstrapping gh-pages into ./output"
+  mkdir ./output
+  git clone git@github.com:bvandgrift/nanoc-pages-demo.git output
+  cd output &amp;&amp; git checkout gh-pages
+
+  echo "Setup complete! use deploy.sh to deploy the site.."
+else
+  echo "Seems there is already an ./output dir."
+  echo "Clean up and try again."
+  exit 1
+fi
+</code></pre>
+
+<p>That’s it! Enjoy.</p>
 
     </div>
   </body>
