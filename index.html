@@ -2,137 +2,72 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>nanoc on pages!- Run your nanoc site on Github Pages</title>
+    <title>nanoc on pages!- Clojure, Explained.</title>
     <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     <meta name="generator" content="nanoc 3.4.1"> 
   </head>
   <body>
     <div id="main">
-      <h1 id="github-pages-ftw">Github Pages FTW</h1>
+      <h2 id="what-is-clojure">What is Clojure?</h2>
 
-<p>by Ben Vandgrift<br />
-<a href="http://twitter.com/bvandgrift">@bvandgrift</a> | <a href="http://ben.vandgrift.com">http://ben.vandgrift.com</a></p>
+<p>Clojure is a LISP implementation with a simplified syntax and fantastic
+concurrency support, targeting the Java Virtual Machine.</p>
 
-<p><a href="http://nanoc.stoneship.org/">Nanoc</a> is a fantastic tool
-for generating sites, and <a href="http://pages.github.com/">github:pages</a>
-is a fantastic low-maintenance way to host your static html site.</p>
+<h2 id="who-me">Who, Me?</h2>
 
-<p>Can we get them together?  I think we can.</p>
+<p>Yes, you.</p>
 
-<p>First, set up a site as usually:</p>
+<p>These pages were written for developers who have heard about Clojure, think it sounds
+neat, but who are hitting a barrier to entry and would like a little more 
+love.</p>
 
-<pre><code>gem install nanoc 
-nanoc create_site my-site
-cd my-site
-</code></pre>
+<p>Come here, give us a hug.  We were you and now we’re going to help.</p>
 
-<p>Make a <code>.rvmrc</code> and <code>Gemfile</code> if that floats your boat. I generally
-add <code>nanoc</code>, <code>kramdown</code>, and <code>adsf</code> to the <code>Gemfile</code> to get started.</p>
+<h2 id="why-try-clojure">Why Try Clojure?</h2>
 
-<p>Create a <a href="https://github.com/repositories/new">new github repo</a> if necessary 
-to house your <code>nanoc</code> site (let’s call it <code>your-repo</code>?), follow 
-the steps, but before committing, your
-<code>.gitignore</code> should include the <code>output</code> directory. Push to github (<code>origin</code>),
-and let’s make some biscuits.</p>
+<p>Learning Clojure will make you a better software developer, provide you with an
+elegant array of tools to solve interesting problems, and give you a leg up on
+a language that’s only to get more popular and useful over time.</p>
 
-<pre><code>rm -rf output
-echo 'output' &gt;&gt; .gitignore
-git add . # NOT your output/ directory!
-git commit -m "boom"
-git remote add origin git@github.com:you/your-repo.git
-git push -u origin master
-</code></pre>
+<p>Too much? Okay, then.</p>
 
-<p>Having removed your output directory, clone your repo into it. Yes, this is
-a little dirty. Once that’s done, create an orphan branch called <code>gh-pages</code>.</p>
+<p>Unless you’re already using a LISP or another
+functional programming language, you’ll find that learning Clojure gives you
+a few new approaches to understanding your craft. Clojure encourages and rewards 
+you for following functional conventions.</p>
 
-<pre><code>git clone git@github.com:you/your-repo.git output &amp;&amp; cd output
-git checkout --orphan gh-pages
-git rm -rf .
-</code></pre>
+<p>Likewise, Clojure provides an opportunity to stretch out and get your noodle
+around concurrency. It provides language features that let you get to the work
+you need to do concurrently without hassling around with managing the
+concurrency itself. Mostly.</p>
 
-<p>Now you have a clean workspace. Back out into the parent directory, and
-generate the site:</p>
+<p>Since Clojure runs on the JVM and plays well with Java, it’s a good candidate
+for cleaning up crufty components quickly and transparently. You may find you
+like doing the same work with much less code to maintain. Your boss may find
+the cleaner code and swifter time to market nice as well.</p>
 
-<pre><code>cd .. &amp;&amp; nanoc
-</code></pre>
+<p>Finally, we believe that Clojure has a bright future, and lives in a very sweet
+spot. It works in the
+enterprise, targeting an execution environment that’s widely deployed.
+It works in the (growing) analytics space; lazy sequences allow the processing
+of colossal data even in a relatively low-memory environment. It works on the
+web, being ideal for creating web services. It even works in the browser, with
+ClojureScript getting more mature with each passing week.</p>
 
-<p>Now your <code>gh-sites</code> branch, tucked away in the ignored <code>output/</code> directory
-contains the compiled site.  The only thing left to do is push it to 
-github:</p>
+<p>If this explanation is too straightforward, you can visit
+<a href="http://clojure.org">clojure.org</a>’s <a href="http://clojure.org/rationale">rationale page</a>.</p>
 
-<pre><code>cd output
-git add .
-git commit -m "we are go for launch."
-git push -u origin gh-pages
-</code></pre>
+<h2 id="now-with-apologies">Now With Apologies!</h2>
 
-<p>After a few minutes, you should be able to hit
-<a href="#">http://you.github.com/your-repo/</a> and see the site you just built.</p>
+<p>Getting started with Clojure and its adjunct technologies can be difficult. The 
+challenges of learning a new language, a new way of planning software, and
+maybe even a new editor are daunting. Being a young language, changes are
+common. Like most LISP communities, the Clojure community can be insular and
+dismissive to outsiders.</p>
 
-<p>Neat, huh?</p>
-
-<p>Because it’s something of a pain to deploy this way every time, you can
-put in place a <a href="https://github.com/bvandgrift/nanoc-pages-demo/blob/master/deploy.sh">deploy
-script</a> 
-to make life a little easier:</p>
-
-<pre><code>#!/usr/bin/env bash
-
-if [[ -z $1 ]]; then
-  echo "usage: deploy \"commit message\""
-else
-  echo "Deploying with commit message: $1"
-
-  cd output
-  git add .
-  git commit -am "$1"
-  git push
-
-  echo "DONE."
-fi
-</code></pre>
-
-<<<<<<< HEAD
-<p>Of course, it’s also to have a <a href="https://github.com/bvandgrift/nanoc-pages-demo/blob/master/bootstrap.sh">bootstrap
-=======
-<p>Of course, it’s also nice to have a <a href="https://github.com/bvandgrift/nanoc-pages-demo/blob/master/bootstrap.sh">bootstrap
->>>>>>> 94c8aa13c0cbb3341462ba8809157524b2139f30
-script</a>
-for when you pull your repo down to another file system for the first time: </p>
-
-<pre><code>#!/usr/bin/env bash
-
-if [ ! -d "./output" ]; then
-  echo "Bootstrapping gh-pages into ./output"
-  mkdir ./output
-  git clone git@github.com:bvandgrift/nanoc-pages-demo.git output
-  cd output &amp;&amp; git checkout gh-pages
-
-  echo "Setup complete! use deploy.sh to deploy the site.."
-else
-  echo "Seems there is already an ./output dir."
-  echo "Clean up and try again."
-  exit 1
-fi
-</code></pre>
-
-<p>That’s it! Enjoy.</p>
+<p>Even given all of that, we think it’s worth learning, worth sharing, and we’ll
+give you all the help we can to make your Clojure experience a pleasant one.</p>
 
     </div>
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-11919947-1']);
-      _gaq.push(['_setDomainName', 'vandgrift.com']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    </script>
   </body>
 </html>
